@@ -4,6 +4,264 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+       <style>
+        /* CSS Variables for easy customization */
+        :root {
+            --primary-green: #58a374;
+            --primary-hover: #46825c;
+            --dark-blue: #0a192f;
+            --text-gray: #5f6368;
+            --light-gray: #f8f9fa;
+            --white: #ffffff;
+            --card-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Utility Components */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-green);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(88, 163, 116, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.6);
+            color: white;
+            margin-left: 10px;
+        }
+
+        .btn-outline:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: white;
+        }
+
+        /* Header */
+        header {
+            padding: 20px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: bold;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .logo span { color: var(--primary-green); }
+
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #444;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover { color: var(--primary-green); }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(10, 25, 47, 0.7), rgba(10, 25, 47, 0.7)), url('https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&q=80&w=1000') center/cover;
+            padding: 100px 0;
+            text-align: center;
+            color: white;
+        }
+
+        .badge {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.3);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span { color: var(--primary-green); }
+
+        .hero p {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            color: rgba(255,255,255,0.8);
+            font-size: 18px;
+        }
+
+        /* Pain Points Section */
+        .problems {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .problems h2 { font-size: 2.2rem; margin-bottom: 10px; }
+        .problems p.subtitle { color: var(--text-gray); margin-bottom: 50px; }
+
+        .grid-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            padding: 40px 20px;
+            background: white;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--card-shadow);
+        }
+
+        .icon-circle {
+            width: 50px;
+            height: 50px;
+            background: #fff5f5;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: #ff5c5c;
+            font-size: 20px;
+        }
+
+        /* Solution Section */
+        .solution {
+            padding: 100px 0;
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            background-color: #fafafa;
+        }
+
+        .solution-image {
+            flex: 1;
+            position: relative;
+        }
+
+        .diagram-placeholder {
+            width: 100%;
+            aspect-ratio: 1/1;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px dashed #eee;
+        }
+
+        .solution-content { flex: 1; }
+        .solution-content h4 { color: var(--primary-green); text-transform: uppercase; margin-bottom: 10px; letter-spacing: 1px; }
+        .solution-content h2 { font-size: 2.5rem; line-height: 1.2; margin-bottom: 20px; }
+        .solution-content p { color: var(--text-gray); margin-bottom: 25px; }
+
+        .feature-list { list-style: none; }
+        .feature-list li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        .check-icon { color: var(--primary-green); }
+
+        /* CTA Section */
+        .cta-box {
+            background-color: #f4f7f5;
+            padding: 80px 40px;
+            border-radius: 12px;
+            text-align: center;
+            margin: 80px auto;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-blue);
+            color: white;
+            padding: 60px 0 20px;
+        }
+
+        .footer-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 40px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .social-links a {
+            color: white;
+            margin-left: 15px;
+            text-decoration: none;
+            font-size: 20px;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+
+        .social-links a:hover { opacity: 1; }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            font-size: 12px;
+            color: rgba(255,255,255,0.5);
+        }
+
+        @media (max-width: 768px) {
+            .solution { flex-direction: column; }
+            .hero h1 { font-size: 2.5rem; }
+        }
+    </style>
+
 </head>
 <body>
     
